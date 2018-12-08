@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { first } from 'rxjs/operators';
+import { AuthService, User } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,20 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'CityPulse-angular';
+  authState: Observable<User | null>;
+
+  constructor(private auth: AuthService) {
+    this.authState = this.auth.authState;
+  }
+
+  login() {
+    this.auth.login();
+  }
+
+  logout() {
+    this.auth
+      .logout()
+      .pipe(first())
+      .subscribe();
+  }
 }
