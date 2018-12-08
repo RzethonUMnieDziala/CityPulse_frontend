@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h3 style="margin-bottom: 30px">Głosuję na:</h3>
+  <mat-radio-group
+    fxLayout="column"
+    fxLayoutGap="15px"
+    formControlName="voteOn"
+    style="margin-bottom: 30px"
+  >
+    <mat-radio-button
+      fxFlex
+      *ngFor="let candidate of config.candidates"
+      [value]="candidate"
+    >
+      {{ candidate }}
+    </mat-radio-button>
+  </mat-radio-group>
+  <button *ngIf="!isSending" mat-raised-button color="primary" type="submit">
+    Zagłosuj
+  </button>
+  <mat-spinner *ngIf="isSending" [diameter]="50"></mat-spinner>
+</form>

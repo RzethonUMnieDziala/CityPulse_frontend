@@ -1,5 +1,10 @@
-<div fxLayout="row" fxLayoutGap="30px" class="container">
-  <mat-card fxFlex>Vote for:</mat-card>
+<div
+  fxLayout="row"
+  fxLayout.lt-md="column"
+  fxLayoutGap="30px"
+  class="container"
+>
+  <mat-card fxFlex> <app-pool [config]="config"></app-pool> </mat-card>
 
-  <mat-card fxFlex>Current results:</mat-card>
+  <mat-card fxFlex><app-chart [results]="results"></app-chart> </mat-card>
 </div>
