@@ -1,0 +1,134 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Panel zarządzania</h1>
+  <mat-grid-list cols="2" rowHeight="500px">
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title> Dodaj/usuń moduły </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-list>
+            <h3 mat-subheader>Aktualnie używane</h3>
+            <mat-list-item *ngFor="let module of modulesAdded">
+              <h4 mat-line>
+                {{
+                  module == 'temperature'
+                    ? 'Monitoring temperatury'
+                    : module == 'humidity'
+                    ? 'Monitoring wilgotności powietrza'
+                    : module == 'electricity'
+                    ? 'Monitoring zuzycia energii'
+                    : module == 'water'
+                    ? 'Monitoring zużycia wody'
+                    : module == 'pollutions'
+                    ? 'Monitoring zużycia powietrza'
+                    : ''
+                }}
+              </h4>
+              <button mat-icon-button (click)="removeModule(module)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-list-item>
+            <h3 mat-subheader>Możliwość dodania</h3>
+            <mat-list-item *ngFor="let module of modulesNotAdded">
+              <h4 mat-line>
+                {{
+                  module == 'temperature'
+                    ? 'Monitoring temperatury'
+                    : module == 'humidity'
+                    ? 'Monitoring wilgotności powietrza'
+                    : module == 'electricity'
+                    ? 'Monitoring zuzycia energii'
+                    : module == 'water'
+                    ? 'Monitoring zużycia wody'
+                    : module == 'pollutions'
+                    ? 'Monitoring zużycia powietrza'
+                    : ''
+                }}
+              </h4>
+              <button mat-icon-button (click)="addModule(module)">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-list-item>
+          </mat-list>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title> Wyślij wiadomość </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <mat-form-field style="width: 90%">
+            <textarea
+              style="min-height: 250px"
+              matInput
+              [formControl]="message"
+              placeholder="Wiadomość"
+            ></textarea>
+          </mat-form-field>
+          <button mat-button (click)="sendMessage()">Wyślij</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title> Stwórz ankietę </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div style="text-align: left; padding-left: 40px">
+            <mat-form-field style="width: 90%">
+              <input
+                matInput
+                [formControl]="poolQuestion"
+                placeholder="Pytanie"
+              />
+            </mat-form-field>
+            <span *ngFor="let option of poolOptions">
+              <mat-form-field style="width: 80%">
+                <input
+                  matInput
+                  [formControl]="option"
+                  placeholder="Odpowiedź"
+                />
+              </mat-form-field>
+            </span>
+            <button mat-icon-button (click)="addPoolOption()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <button mat-button (click)="createPool()">Utwórz</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+
+    <mat-grid-tile [colspan]="1" [rowspan]="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title> Utwórz wybory </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div style="text-align: left; padding-left: 40px">
+            <span *ngFor="let candidate of candidates">
+              <mat-form-field style="width: 80%">
+                <input
+                  matInput
+                  [formControl]="candidate"
+                  placeholder="Nazwa kandydata"
+                />
+              </mat-form-field>
+            </span>
+            <button mat-icon-button (click)="addCandidate()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <button mat-button (click)="createElection()">Utwórz</button>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

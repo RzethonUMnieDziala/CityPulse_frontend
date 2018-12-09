@@ -3,16 +3,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
-import {
-  MatButtonModule,
-  MatGridListModule,
-  MatIconModule,
-  MatListModule,
-  MatSidenavModule,
-  MatToolbarModule
-} from '@angular/material';
+import { MatButtonModule, MatGridListModule, MatIconModule, MatListModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
@@ -95,7 +89,8 @@ const appRoutes: Routes = [
     MatProgressSpinnerModule,
     MatDialogModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatInputModule
   ],
   providers: [],
   entryComponents: [ResultModalComponent],
