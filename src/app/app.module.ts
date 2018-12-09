@@ -5,6 +5,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   MatButtonModule,
+  MatGridListModule,
   MatIconModule,
   MatListModule,
   MatSidenavModule,
@@ -15,32 +16,49 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { CookieModule } from 'ngx-cookie';
 import { environment } from './../environments/environment';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { SteemConnectConfig } from './auth/config';
+import { DataChartsComponent } from './data-charts/data-charts.component';
 import { ChartComponent } from './election/chart/chart.component';
 import { ElectionComponent } from './election/election.component';
 import { PoolComponent } from './election/pool/pool.component';
 import { ResultModalComponent } from './election/pool/result-modal.component';
 import { LayoutComponent } from './layout/layout.component';
-import { DataChartsComponent } from './data-charts/data-charts.component';
 
 const appRoutes: Routes = [
   {
     path: '',
     pathMatch: 'full',
+    redirectTo: '/election'
+  },
+  {
+    path: 'election',
+    pathMatch: 'full',
     component: ElectionComponent
+  },
+  {
+    path: 'data-charts',
+    pathMatch: 'full',
+    component: DataChartsComponent
+  },
+  {
+    path: 'admin',
+    pathMatch: 'full',
+    component: AdminDashboardComponent
   },
   {
     path: '**',
     pathMatch: 'full',
-    component: ElectionComponent
+    redirectTo: ''
   }
 ];
 
@@ -52,7 +70,8 @@ const appRoutes: Routes = [
     PoolComponent,
     ChartComponent,
     ResultModalComponent,
-    DataChartsComponent
+    DataChartsComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +93,9 @@ const appRoutes: Routes = [
     MatMenuModule,
     MatCardModule,
     MatProgressSpinnerModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [],
   entryComponents: [ResultModalComponent],

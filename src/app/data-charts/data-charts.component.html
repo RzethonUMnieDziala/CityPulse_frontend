@@ -1,0 +1,53 @@
+<div style="margin: 50px" *ngIf="(tempData$ | async) as temData; else: loading">
+  <mat-form-field>
+    <mat-select placeholder="Wybierz dzielnicę" [formControl]="chosenDistrict">
+      <mat-option *ngFor="let district of districts" [value]="district">
+        Osiedle {{ district }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div fxLayout="row" fxLayoutGap="20px">
+    <div fxFlex fxLayout="column" fxLayoutGap="20px">
+      <mat-card fxFlex>
+        <google-chart
+          *ngIf="temData.length"
+          [title]="'Temperatura'"
+          [type]="'LineChart'"
+          [data]="temData"
+        ></google-chart>
+      </mat-card>
+      <mat-card fxFlex>
+        <google-chart
+          *ngIf="(humData$ | async) as humData"
+          [title]="'Wilgotność powietrza'"
+          [type]="'LineChart'"
+          [data]="humData"
+        ></google-chart>
+      </mat-card>
+    </div>
+
+    <div fxFlex fxLayout="column" fxLayoutGap="20px">
+      <mat-card fxFlex>
+        <google-chart
+          *ngIf="(eleData$ | async) as eleData"
+          [title]="'Zużycie energii'"
+          [type]="'LineChart'"
+          [data]="eleData"
+        ></google-chart>
+      </mat-card>
+      <mat-card fxFlex>
+        <google-chart
+          *ngIf="(watData$ | async) as watData"
+          [title]="'Zużycie wody'"
+          [type]="'LineChart'"
+          [data]="watData"
+        ></google-chart>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<ng-template #loading>
+  <div style="margin: 50px"><mat-spinner></mat-spinner></div>
+</ng-template>

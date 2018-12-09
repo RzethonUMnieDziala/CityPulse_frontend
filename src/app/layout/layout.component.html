@@ -9,8 +9,24 @@
   >
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Wybory</a>
-      <a mat-list-item href="#">Pomiary</a> <a mat-list-item href="#">Admin</a>
+      <a
+        mat-list-item
+        [routerLink]="['/election']"
+        routerLinkActive="router-link-active"
+        >Wybory</a
+      >
+      <a
+        mat-list-item
+        [routerLink]="['/data-charts']"
+        routerLinkActive="router-link-active"
+        >Pomiary</a
+      >
+      <a
+        mat-list-item
+        [routerLink]="['/admin']"
+        routerLinkActive="router-link-active"
+        >Zarządzanie</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -33,8 +49,11 @@
 
       <div class="toolbar__user" fxFlex>
         <div *ngIf="(authState$ | async) as user; else: guest">
-          <img class="toolbar__user-avatar" [src]="getAvatarURL(user.uid)" />
-
+          <img
+            class="toolbar__user-avatar"
+            style="position: fixed; top: 10px; right: 70px;"
+            [src]="getAvatarURL(user.uid)"
+          />
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
