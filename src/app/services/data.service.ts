@@ -3,6 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { replace } from 'ramda';
 
+export const modulesConfig = {
+  temperature: true,
+  humidity: true,
+  electricity: true,
+  water: true,
+  pollutions: false
+};
+
 @Injectable({
   providedIn: 'root'
 })
